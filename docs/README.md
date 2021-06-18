@@ -1,6 +1,6 @@
 # Final Project Planning
 ---
-last updated: June 18th
+Last Updated: June 18th
 ## What Program are we going to create?
 ---
 We will be creating a game based off of Battleship. It will include two boards of 64 tiles for each player. The game will played against the computer. The game starts with each player selecting where to place their ships on their own board. Players will then take turns choosing a tile which will result in either a hit or miss depending on the composition of ships. When either player loses all of their ships the game will end.
@@ -12,6 +12,7 @@ To build our program we will use Python as our programming language with the Arc
 ## What features will we include?
 ---
 The features we will include are:
+
     Main Scene
     - Play Button
     - Help Button
