@@ -3,9 +3,7 @@
 Last Updated: June 18th
 ## What Program are we going to create?
 ---
-We will be creating a game based off of Battleship. It will include two boards of 64 tiles for each player. The game will played against the computer. The game starts with each player selecting where to place their ships on their own board. Players will then take turns choosing a tile which will result in either a hit or miss depending on the composition of ships. When either player loses all of their ships the game will end. (## Problem: This idea might not be arcade friendly. i.e. mouse clicks. Possible solution: select tile with arrow keys)
-
-Idea 2: Raft/boat picking up peeps. Travels to several maps, navigates mazes to find people. Game is played across several maps (4 or 5) that are connected to each other.
+We will be creating a game based off of Battleship. It will include two boards of 64 tiles for each player. The game will played against the computer. The game starts with each player selecting where to place their ships on their own board. Players will then take turns choosing a tile which will result in either a hit or miss depending on the composition of ships. When either player loses all of their ships the game will end.
 
 ## What Technologies will we use?
 ---
