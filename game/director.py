@@ -27,7 +27,7 @@ class Director(arcade.Window):
         middle_x = constants.SCREEN_WIDTH / 2
 
         #testing sprite
-        first_empty_spot = arcade.Sprite(constants.BATTLESHIP_IMAGE,center_x = 650, center_y = 650)
+        first_empty_spot = arcade.Sprite(constants.BATTLESHIP_IMAGE, center_x = 350, center_y = 400)
         first_empty_spot.draw()
 
         #arcade.draw_rectangle_filled(,center_x=middle_x,center_y=0, width = 10, height=constants.SCREEN_HEIGHT, color=arcade.color.BLUE)
