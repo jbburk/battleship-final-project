@@ -26,8 +26,12 @@ class Director(arcade.Window):
 
         middle_x = constants.SCREEN_WIDTH / 2
 
-        #arcade.draw_rectangle_filled(,center_x=middle_x,center_y=0, width = 10, height=constants.SCREEN_HEIGHT, color=arcade.color.BLUE)
+        #testing sprite
+        first_empty_spot = arcade.Sprite(constants.BATTLESHIP_IMAGE,center_x = 650, center_y = 650)
+        first_empty_spot.draw()
 
+        #arcade.draw_rectangle_filled(,center_x=middle_x,center_y=0, width = 10, height=constants.SCREEN_HEIGHT, color=arcade.color.BLUE)
+"""
         self.user_spot_coords = []
         for x in range(50,350,50):
             for y in range(0,400,50):
@@ -42,14 +46,12 @@ class Director(arcade.Window):
             new_spot = arcade.Sprite(constants.BATTLESHIP_IMAGE,center_x = x,center_y = y, )
             self.empty_spots.append(new_spot)
             new_spot.draw()
-
-    def draw_empty_space(x,y,color):
-        pass
-
+            """
+        
 
 
 
 
-    def draw_window(self):
-        pass
+
+
 
