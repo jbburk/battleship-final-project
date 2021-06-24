@@ -1,7 +1,7 @@
-from game.director import Director
-import game.constants as constants
+from director import Director
+import constants as constants
 from asciimatics.screen import Screen 
-from game.input_service import Input_Service
+from input_service import Input_Service
 import arcade
 
 def main(screen):

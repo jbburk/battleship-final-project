@@ -1,14 +1,13 @@
 import arcade
-from game.game_board import Game_Board
-from game.point import Point
-
-from game import constants
+from game_board import Game_Board
+from point import Point
+import constants 
 
 import os #for now
 print(os.getcwd())
 file_path = os.getcwd()
 
-
+5
 
 class Director(arcade.Window):
     def __init__(input_service,self,width,height,title):

@@ -1,6 +1,6 @@
 import arcade
 #from arcade.gui.events import MOUSE_PRESS
-from game.point import Point
+from point import Point
 import sys
 
 class Input_Service:
