@@ -1,15 +1,17 @@
 import arcade
+#from arcade.gui.events import MOUSE_PRESS
 from game.point import Point
+import sys
 
 class Input_Service:
     def __init__(self,screen):
         self.screen = screen
-        self._keys = {}
+        """self._keys = {}
         self.keys[119] = Point(0, -1) #Up
         self.keys[115] = Point(0, 1) #Left
         self.keys[97] = Point(-1, 0) #Down
         self.keys[100] = Point(1, 0) #Right
-        self.keys[13] = "Enter"
+        self.keys[13] = "Enter"""
 
 
     def set_key(self, key, modifiers):
@@ -36,3 +38,10 @@ class Input_Service:
             return Point(1, 0)
         elif key == arcade.key.DOWN or key == arcade.key.S:
             return Point(-1, 0)
+
+    def on_mouse_press(self,x,y,button,modifiers):
+        if button == arcade.MOUSE_BUTTON_LEFT:
+            left, right, bottom, top = arcade.get_viewport()
+            x = x + left
+            y = y + bottom
+

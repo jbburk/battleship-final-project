@@ -42,35 +42,21 @@ class Director(arcade.Window):
                 self.empty_spots.append(empty_computer_spot)
                 self.all_sprites.append(empty_computer_spot)
 
-        self.dividor = arcade.Sprite(constants.DIVIDOR_IMAGE,center_x = 510, center_y = 350)
-        """self.dividor._set_color(arcade.color.BLUE)
-        self.dividor._set_height(500)
-        self.dividor._set_width(20)"""
+
+
+        self.dividor = arcade.Sprite(constants.DIVIDOR_IMAGE,center_x = 480, center_y = 470)
         self.all_sprites.append(self.dividor)
 
+        arcade.set_background_color(arcade.color.AQUA)
+        self.background_loaded = arcade.load_texture(constants.BACKGROUND_IMAGE)
 
-            
+
+        arcade.draw_lrwh_rectangle_textured(0,0,constants.SCREEN_WIDTH,constants.SCREEN_HEIGHT,self.background_loaded)
+        
+
+    def on_update(self):
         for sprite in self.all_sprites:
             sprite.draw()
-
-        #arcade.draw_rectangle_filled(,center_x=middle_x,center_y=0, width = 10, height=constants.SCREEN_HEIGHT, color=arcade.color.BLUE)
-"""
-        self.user_spot_coords = []
-        for x in range(50,350,50):
-            for y in range(0,400,50):
-                self.user_spot_coords.append([x,y])
-        
-        for item in self.user_spot_coords:
-            x = item[0]
-            y = item[1]
-
-            new_spot_point = Point(x,y)
-
-            new_spot = arcade.Sprite(constants.BATTLESHIP_IMAGE,center_x = x,center_y = y, )
-            self.empty_spots.append(new_spot)
-            new_spot.draw()
-            """
-        
 
 
 

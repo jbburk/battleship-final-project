@@ -9,7 +9,7 @@ def main(screen):
     #output_service = OutputService(screen)
     director = Director(input_service,constants.SCREEN_WIDTH,constants.SCREEN_HEIGHT,constants.SCREEN_TITLE)
     #director.start_game()
-
+    
     
 Screen.wrapper(main)
 arcade.run()
