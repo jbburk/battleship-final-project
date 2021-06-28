@@ -3,8 +3,6 @@ from game_board import Game_Board
 from point import Point
 from output_service import Output_Service
 import constants
-#for now
-import tkinter.messagebox as tk_mb
 
 class Director(arcade.Window):
     def __init__(self,width,height,title):
