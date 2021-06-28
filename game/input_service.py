@@ -3,9 +3,15 @@ import arcade
 from point import Point
 import sys
 
+
+#for now
+import tkinter.messagebox as tk_mb
+
+
 class Input_Service:
-    def __init__(self,screen):
+    def __init__(self,screen,selector):
         self.screen = screen
+        self.selector = selector
         """self._keys = {}
         self.keys[119] = Point(0, -1) #Up
         self.keys[115] = Point(0, 1) #Left
@@ -40,8 +46,9 @@ class Input_Service:
             return Point(-1, 0)
 
     def on_mouse_press(self,x,y,button,modifiers):
+        tk_mb.showinfo(message="click")
         if button == arcade.MOUSE_BUTTON_LEFT:
-            left, right, bottom, top = arcade.get_viewport()
-            x = x + left
-            y = y + bottom
+            self.selector.center_x = x
+            self.selector.center_y = y
+            self.selector.draw() #For now
 
