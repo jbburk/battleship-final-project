@@ -5,7 +5,6 @@ class Game_Board:
     Stereotype: Information Holder
 
     """
-
     def __init__(self):
         self.board = []
         for row in range(0,8):
