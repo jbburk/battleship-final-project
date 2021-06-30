@@ -47,7 +47,7 @@ class MyGame(arcade.Window):
 
         # This will be a two-dimensional grid of sprites to mirror the two
         # dimensional grid of numbers. This points to the SAME sprites that are
-        # in grid_sprite_list, just in a 2d manner.
+        # in grid_sprite_list, just  in a 2d manner.
         self.grid_sprites = []
 
         # Create a list of solid-color sprites to represent each grid location
@@ -76,7 +76,7 @@ class MyGame(arcade.Window):
         """
         Called when the user presses a mouse button.
         """
-    
+
         # Change the x/y screen coordinates to grid coordinates
         column = int(x // (WIDTH + MARGIN))
         row = int(y // (HEIGHT + MARGIN))

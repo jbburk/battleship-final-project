@@ -99,7 +99,8 @@ class Director(arcade.Window):
         row = int(y // (constants.HEIGHT + constants.MARGIN))
         if x < 500:
             self.user_grid_sprites[row][column].color = arcade.color.BLUE
-            
+        elif x >= 550:
+            self.computer_grid_sprites[row][column].color = arcade.color.BLUE
 
 
     
