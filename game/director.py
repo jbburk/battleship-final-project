@@ -45,6 +45,9 @@ class Director(arcade.Window):
         self.attacks = attacks(self.user_board_coordinates)
 
     def setup(self):
+        #Background sounds/music 
+        arcade.play_sound(constants.TEST_SOUND)
+        
         self.user_ships = arcade.SpriteList()
         self.computer_ships = []
         self.user_sprite_coordinates = arcade.SpriteList()
@@ -97,6 +100,9 @@ class Director(arcade.Window):
                                 self.user_board_coordinates[spot_index] = "s"
                                 self.game_status.add_placed_ship()
                                 self.current_message = f"Placed ship # {self.game_status.user_ships_placed}"
+                                #Sound effect for placing ship on user side
+                                arcade.play_sound(constants.TEST_SOUND)
+
 
                 elif self.game_status.get_current_turn() == "user":
                     #print("Ok, user's turn!")
@@ -109,6 +115,9 @@ class Director(arcade.Window):
                                 self.game_status.computer_ships_placed -= 1
                                 self.current_message = "You got a hit!"
 
+                                #Sound effect for a user hit
+                                arcade.play_sound(constants.TEST_SOUND)
+
 
                             if shot_result == "miss!":
                                 spot.color = arcade.color.RED
@@ -116,10 +125,16 @@ class Director(arcade.Window):
                                 self.game_status.switch_turns()
                                 self.current_message = "You missed! It's the Computer's turn!"
 
+                                #Sound effect for user miss
+                                arcade.play_sound(constants.TEST_SOUND)
+
                             if shot_result == "already fired there!":
                                 print("You already fired there!") #Display to user that they've already fired there
                                 self.current_message = "You already fired there! Try again! "
                             
+                                #Sound effect for if the user fires somewhere they've already fired - could take out later
+                                arcade.play_sound(constants.TEST_SOUND)
+
 
     def on_update(self,delta_time):
         self.check_for_win()
@@ -157,10 +172,16 @@ class Director(arcade.Window):
                 
                 self.game_status.user_ships_placed -= 1
 
+                #Sound effect for a computer hit
+                arcade.play_sound(constants.TEST_SOUND)
+
             elif attack_result == "miss!":
                 self.user_sprite_coordinates[spot].color = arcade.color.RED
                 self.user_board_coordinates[spot] = "m"
                 self.game_status.switch_turns()
+
+                #Sound effect for a computer miss
+                arcade.play_sound(constants.TEST_SOUND)
 
             else:
                 print("\nSorry, computer, you've already shot there \n") 
@@ -193,8 +214,14 @@ class Director(arcade.Window):
             if self.game_over:
                 if self.winner == "user":
                     print("\nYou won! Congratulations captain!\n")
+                    
+                    #Sound effect for a win
+                    arcade.play_sound(constants.TEST_SOUND)
                 else:
                     print("\nYou lost! The computer beat you! Better luck next time!\n")
+                    
+                    #Sound effect for a loss
+                    arcade.play_sound(constants.TEST_SOUND)
                 
                 sys.exit()
 

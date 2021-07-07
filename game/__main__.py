@@ -10,5 +10,3 @@ def main(screen):
         
 Screen.wrapper(main)
 arcade.run()
-
-  
