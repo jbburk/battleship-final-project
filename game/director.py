@@ -9,14 +9,18 @@ from grid_spot import Grid_Spot
 from shot import attacks
 import constants
 
+from game_over_screen import GameOverScreen
+
 
 #To-Do:
 #1. Update the selector to handle checking collisions with empty spaces on each side of the board. 
 #2. Add functionality for placing ships along with hits and misses on each side of board.
 
-class Director(arcade.Window):
-    def __init__(self,width,height,title):
-        super().__init__(width,height,title)
+
+
+class Director(arcade.View):
+    def __init__(self):
+        super().__init__()
 
         self.output_service = Output_Service()
         
@@ -44,9 +48,12 @@ class Director(arcade.Window):
         #Establishing instance of class
         self.attacks = attacks(self.user_board_coordinates)
 
-    def setup(self):
+    #def setup(self):
+    def on_show(self):
         #Background sounds/music 
         arcade.play_sound(constants.TEST_SOUND)
+        
+        self.mouse = arcade.Sprite(constants.CLICKER_IMAGE, center_x=700,center_y=700,image_height=20,image_width=12)
         
         self.user_ships = arcade.SpriteList()
         self.computer_ships = []
@@ -56,8 +63,8 @@ class Director(arcade.Window):
         self.all_sprites = arcade.SpriteList()
         
         #Creating each coordinate's sprite for each side of the board
-        for x in range(50,450,50):
-            for y in range(100,500,50):
+        for x in range(50,350,50):
+            for y in range(100,400,50):
                 #User side of game board
                 empty_user_spot = arcade.Sprite(constants.EMPTY_SPOT_IMAGE, center_x = x, center_y = constants.SCREEN_HEIGHT - y, image_width=constants.WIDTH,image_height=constants.HEIGHT)
                 self.user_sprite_coordinates.append(empty_user_spot)
@@ -65,49 +72,46 @@ class Director(arcade.Window):
                 self.all_sprites.append(empty_user_spot)
 
                 #Computer side of board
-                empty_computer_spot = arcade.Sprite(constants.EMPTY_SPOT_IMAGE,center_x = x + 500,center_y = constants.SCREEN_HEIGHT - y, image_width=constants.WIDTH,image_height=constants.HEIGHT)
+                empty_computer_spot = arcade.Sprite(constants.EMPTY_SPOT_IMAGE,center_x = x + 400,center_y = constants.SCREEN_HEIGHT - y, image_width=constants.WIDTH,image_height=constants.HEIGHT)
                 self.computer_sprite_coordinates.append(empty_computer_spot)
                 self.computer_board_coordinates.append("e")
                 self.all_sprites.append(empty_computer_spot)
                 
         #Creating the center dividor between the sides of the board
-        self.dividor = arcade.Sprite(constants.DIVIDOR_IMAGE,center_x = 480, center_y = 470)
+        self.dividor = arcade.Sprite(constants.DIVIDOR_IMAGE,center_x = 375, center_y = constants.SCREEN_HEIGHT - 230, image_height=350,image_width = 20)
         self.all_sprites.append(self.dividor)
 
-        ####Testing Selector#######
-        self.selector = arcade.Sprite(constants.SELECTOR_IMAGE,image_height = 30, image_width = 20)
-        self.selector.color = arcade.color.WHITE
-        self.all_sprites.append(self.selector)
 
         #Setting the game's background
         arcade.set_background_color(arcade.color.AQUA)
         self.background_loaded = arcade.load_texture(constants.BACKGROUND_IMAGE)
         arcade.draw_lrwh_rectangle_textured(0,0,constants.SCREEN_WIDTH,constants.SCREEN_HEIGHT,self.background_loaded)
-  
+
+    def on_mouse_motion(self,x,y,dx,dy):
+        self.mouse.center_x = x
+        self.mouse.center_y = y
+
     def on_mouse_press(self,x,y,button,modifiers):
         if not self.game_over:
             if button == arcade.MOUSE_BUTTON_LEFT:
-                self.selector.center_x = x
-                self.selector.center_y = y
-
                 #Checking for clicks on sprites
                 if self.game_status.is_placing_user_ships(): #If the user is placing ships 
                     for spot in self.user_sprite_coordinates: #Looping through all sprites themselves
                         spot_index = self.user_sprite_coordinates.index(spot)
-                        if self.selector.collides_with_sprite(spot): 
+                        if self.mouse.collides_with_sprite(spot): 
                             if spot_index not in self.user_ships: 
                                 self.place_user_ship(spot)
                                 self.user_board_coordinates[spot_index] = "s"
                                 self.game_status.add_placed_ship()
                                 self.current_message = f"Placed ship # {self.game_status.user_ships_placed}"
+                                
                                 #Sound effect for placing ship on user side
                                 arcade.play_sound(constants.TEST_SOUND)
 
 
                 elif self.game_status.get_current_turn() == "user":
-                    #print("Ok, user's turn!")
                     for spot in self.computer_sprite_coordinates:
-                        if self.selector.collides_with_sprite(spot):
+                        if self.mouse.collides_with_sprite(spot):
                             shot_result = self.attacks.check_shot(self.computer_sprite_coordinates.index(spot),self.computer_board_coordinates)
                             if shot_result == "hit!":
                                 spot.color = arcade.color.GREEN
@@ -117,7 +121,6 @@ class Director(arcade.Window):
 
                                 #Sound effect for a user hit
                                 arcade.play_sound(constants.TEST_SOUND)
-
 
                             if shot_result == "miss!":
                                 spot.color = arcade.color.RED
@@ -142,8 +145,8 @@ class Director(arcade.Window):
         self.output_service.draw_all_sprites(self.all_sprites)
         
         #Creating labels for each side of board
-        arcade.draw_text("Allies",start_x = 175, start_y = 740, color=arcade.color.BLACK, font_size=40, )
-        arcade.draw_text("Enemies",start_x = 640, start_y = 740, font_size=40, color=arcade.color.RED)
+        arcade.draw_text("Allies",start_x = 130, start_y = constants.SCREEN_HEIGHT - 60, color=arcade.color.BLACK, font_size=40, )
+        arcade.draw_text("Enemies",start_x = 490, start_y = constants.SCREEN_HEIGHT - 60, font_size=40, color=arcade.color.RED)
 
         #Message label 
         arcade.draw_text(self.current_message,start_x = constants.MESSAGE_START_X, start_y = constants.MESSAGE_START_Y, color=arcade.color.BLUE, font_size=constants.MESSAGE_FONT_SIZE)
@@ -152,7 +155,6 @@ class Director(arcade.Window):
             while self.game_status.computer_ships_placed != 5:
                 new_ship_coord = random.randint(0,len(self.computer_sprite_coordinates))                
                 if new_ship_coord not in self.computer_ships:
-                    print(f"New Ship coord: {new_ship_coord}, length of max of range: {len(self.computer_sprite_coordinates)}")
                     self.computer_board_coordinates[new_ship_coord] = "s"
                     self.computer_ships.append(new_ship_coord)
                     self.game_status.add_placed_ship()
@@ -183,8 +185,7 @@ class Director(arcade.Window):
                 #Sound effect for a computer miss
                 arcade.play_sound(constants.TEST_SOUND)
 
-            else:
-                print("\nSorry, computer, you've already shot there \n") 
+        self.mouse.draw()
 
     def place_user_ship(self,sprite):
         sprite.color = arcade.color.BLUE
@@ -213,24 +214,23 @@ class Director(arcade.Window):
 
             if self.game_over:
                 if self.winner == "user":
-                    print("\nYou won! Congratulations captain!\n")
+                    print("You won! Congratulations captain!")
                     
                     #Sound effect for a win
                     arcade.play_sound(constants.TEST_SOUND)
+
+                    
                 else:
-                    print("\nYou lost! The computer beat you! Better luck next time!\n")
+                    print("You lost! The computer beat you!\n Better luck next time!")
                     
                     #Sound effect for a loss
                     arcade.play_sound(constants.TEST_SOUND)
                 
-                sys.exit()
+                self.game_over_screen = GameOverScreen(self,self.winner)
+                self.window.show_view(self.game_over_screen)
 
-
-
-
-        
-        
-        
-        
-
-       
+    #for testing purposes
+    def on_key_press(self,symbol:int, modifiers:int):
+        if symbol == arcade.key.Q:
+            self.game_over_screen = GameOverScreen(self,self.winner)
+            self.window.show_view(self.game_over_screen)

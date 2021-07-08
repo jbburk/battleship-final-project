@@ -1,8 +1,8 @@
 import os
 import arcade
 
-SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 800
+SCREEN_WIDTH = 750
+SCREEN_HEIGHT = 600
 SCREEN_TITLE = "Battleship!"
 TOTAL_SHIPS = 5
 
@@ -30,6 +30,8 @@ DIVIDOR_IMAGE =  os.path.join(file_path, "assets", "images", "dividor.png")
 BACKGROUND_IMAGE = os.path.join(file_path, "assets", "images","water.gif") 
 TEST_PLACE_HOLDER = os.path.join(file_path, "assets", "images","placeholder90x20.png")
 
+#test mouse replacement for start screen and instructions
+CLICKER_IMAGE = os.path.join(file_path,"assets","images","clicker.png")
 #Sound file paths
 TEST_SOUND_FILE = os.path.join(file_path,"assets","example_sound.wav")
 
