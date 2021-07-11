@@ -23,10 +23,10 @@ MESSAGE_FONT_SIZE = 15
 
 file_path = os.path.dirname(os.path.abspath(__file__))
 #Image paths
-BATTLESHIP_IMAGE = os.path.join(file_path,"assets","images","battleship_20h.png")
+BATTLESHIP_IMAGE = os.path.join(file_path,"assets","images","battleship_30x20.png")
 EMPTY_SPOT_IMAGE = os.path.join(file_path, "assets", "images", "placeholder80x20.png") 
 SELECTOR_IMAGE =  os.path.join(file_path, "assets", "images", "selector.png") 
-DIVIDOR_IMAGE =  os.path.join(file_path, "assets", "images", "dividor.png") 
+DIVIDOR_IMAGE =  os.path.join(file_path, "assets", "images", "rock-dividor.png") 
 BACKGROUND_IMAGE = os.path.join(file_path, "assets", "images","water.gif") 
 TEST_PLACE_HOLDER = os.path.join(file_path, "assets", "images","placeholder90x20.png")
 
