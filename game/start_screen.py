@@ -8,8 +8,6 @@ class StartScreen(arcade.View):
     def __init__(self):
         super().__init__()
         
-  
-
     def on_show(self):
         #arcade.set_background_color(arcade.color.SKY_BLUE)
         self.window.set_mouse_visible(False)
@@ -28,7 +26,6 @@ class StartScreen(arcade.View):
         self.start_game_button.width = 100
         self.start_game_button.height=50
         self.start_sprites.append(self.start_game_button)
-
 
     def on_draw(self):
         arcade.start_render()

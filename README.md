@@ -1,5 +1,11 @@
 # [PROGRAM NAME] 
-[a description of the program]
+Here we have an awesome Battleship game! 
+A simple but fun game for all ages, here's how to play!
+Begin by placing your 5 ships on the left side of the screen
+Next, begin attacking the computer's ships on the right side, and 
+the computer will begin attacking as well! Hit all 5 of your opponent's 
+ships and you win! 
+Good luck! 
 
 ## Getting Started
 ---
