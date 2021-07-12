@@ -51,7 +51,7 @@ class Director(arcade.View):
     #def setup(self):
     def on_show(self):
         #Background sounds/music 
-        arcade.play_sound(constants.TEST_SOUND)
+        arcade.play_sound(constants.BACKGROUND_MUSIC)
         
         self.mouse = arcade.Sprite(constants.CLICKER_IMAGE, center_x=700,center_y=700,image_height=20,image_width=12)
         

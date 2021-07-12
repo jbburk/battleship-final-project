@@ -34,7 +34,8 @@ TEST_PLACE_HOLDER = os.path.join(file_path, "assets", "images","placeholder90x20
 CLICKER_IMAGE = os.path.join(file_path,"assets","images","clicker.png")
 #Sound file paths
 TEST_SOUND_FILE = os.path.join(file_path,"assets","example_sound.wav")
-
+BACKGROUND_MUSIC_FILE = os.path.join(file_path,"assets","battle_sound1.wav")
 
 #Loaded sounds
 TEST_SOUND = arcade.load_sound(TEST_SOUND_FILE)
+BACKGROUND_MUSIC = arcade.load_sound(BACKGROUND_MUSIC_FILE)
