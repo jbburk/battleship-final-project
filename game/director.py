@@ -8,6 +8,7 @@ from output_service import Output_Service
 from grid_spot import Grid_Spot
 from shot import attacks
 import constants
+import time
 
 from game_over_screen import GameOverScreen
 
@@ -120,7 +121,7 @@ class Director(arcade.View):
                                 self.current_message = "You got a hit!"
 
                                 #Sound effect for a user hit
-                                arcade.play_sound(constants.TEST_SOUND)
+                                arcade.play_sound(constants.GRENADE)
 
                             if shot_result == "miss!":
                                 spot.color = arcade.color.RED
@@ -129,14 +130,14 @@ class Director(arcade.View):
                                 self.current_message = "You missed! It's the Computer's turn!"
 
                                 #Sound effect for user miss
-                                arcade.play_sound(constants.TEST_SOUND)
+                                arcade.play_sound(constants.BULLET)
 
                             if shot_result == "already fired there!":
                                 print("You already fired there!") #Display to user that they've already fired there
                                 self.current_message = "You already fired there! Try again! "
                             
                                 #Sound effect for if the user fires somewhere they've already fired - could take out later
-                                arcade.play_sound(constants.TEST_SOUND)
+                                arcade.play_sound(constants.BUZZER)
 
 
     def on_update(self,delta_time):
@@ -175,7 +176,7 @@ class Director(arcade.View):
                 self.game_status.user_ships_placed -= 1
 
                 #Sound effect for a computer hit
-                arcade.play_sound(constants.TEST_SOUND)
+                #arcade.play_sound(constants.SONG)
 
             elif attack_result == "miss!":
                 self.user_sprite_coordinates[spot].color = arcade.color.RED
@@ -183,7 +184,7 @@ class Director(arcade.View):
                 self.game_status.switch_turns()
 
                 #Sound effect for a computer miss
-                arcade.play_sound(constants.TEST_SOUND)
+                #arcade.play_sound(constants.SONG)
 
         self.mouse.draw()
 
@@ -217,14 +218,14 @@ class Director(arcade.View):
                     print("You won! Congratulations captain!")
                     
                     #Sound effect for a win
-                    arcade.play_sound(constants.TEST_SOUND)
+                    arcade.play_sound(constants.WAR_THEME)
 
                     
                 else:
                     print("You lost! The computer beat you!\n Better luck next time!")
                     
                     #Sound effect for a loss
-                    arcade.play_sound(constants.TEST_SOUND)
+                    arcade.play_sound(constants.MISSILE_SIREN)
                 
                 self.game_over_screen = GameOverScreen(self,self.winner)
                 self.window.show_view(self.game_over_screen)

@@ -9,6 +9,7 @@ class GameOverScreen(arcade.View):
         self.winner = winner
         self.message = ""
         self.game_screen = game_screen
+        self.background_image = None
 
     def on_show(self):
         arcade.set_background_color(arcade.color.GREEN_YELLOW)
@@ -33,6 +34,10 @@ class GameOverScreen(arcade.View):
         
     def on_draw(self):
         arcade.start_render()
+        
+        self.background_image = arcade.load_texture(constants.BOMB_BACKGROUND)
+        arcade.draw_lrwh_rectangle_textured(0,0,constants.SCREEN_WIDTH,constants.SCREEN_HEIGHT,self.background_image)
+
         if self.winner == "user":
             self.message = "You won! Congratulations Captain!"
 

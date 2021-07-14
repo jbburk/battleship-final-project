@@ -25,6 +25,7 @@ class Game_Board:
 
     def place_miss(self,row,column):
         """Method used to record a miss on the board"""
+        
         self.board[row][column] = "M"
 
     def check_shot(self,row,column):
