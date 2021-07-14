@@ -8,7 +8,6 @@ from output_service import Output_Service
 from grid_spot import Grid_Spot
 from shot import attacks
 import constants
-import time
 
 from game_over_screen import GameOverScreen
 
