@@ -5,7 +5,6 @@ import sys
 class GameOverScreen(arcade.View):
     def __init__(self,game_screen,winner):
         super().__init__()
-        print(winner)
         self.winner = winner
         self.message = ""
         self.game_screen = game_screen
@@ -47,7 +46,7 @@ class GameOverScreen(arcade.View):
         
         self.all_sprites.draw()
 
-        arcade.draw_text(self.message,start_x = (constants.SCREEN_WIDTH/2) - 300, start_y = constants.SCREEN_HEIGHT / 2, color=arcade.color.WHITE,font_size=35)
+        arcade.draw_text(self.message,start_x = (constants.SCREEN_WIDTH/2) - 300, start_y = constants.SCREEN_HEIGHT *.75 + 50, color=arcade.color.WHITE,font_size=35)
         
         arcade.draw_text("Play Again",start_x=constants.SCREEN_WIDTH - 585, start_y=constants.SCREEN_HEIGHT - 410, color=arcade.color.WHITE)
         arcade.draw_text("Exit",start_x=constants.SCREEN_WIDTH - 230, start_y=constants.SCREEN_HEIGHT - 410, color=arcade.color.WHITE)
