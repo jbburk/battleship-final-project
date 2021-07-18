@@ -11,12 +11,9 @@ import constants
 
 from game_over_screen import GameOverScreen
 
-
 #To-Do:
 #1. Update the selector to handle checking collisions with empty spaces on each side of the board. 
 #2. Add functionality for placing ships along with hits and misses on each side of board.
-
-
 
 class Director(arcade.View):
     def __init__(self):
@@ -27,6 +24,13 @@ class Director(arcade.View):
         #Variable to hold the current output shown to the user via text
         self.current_message = ""
 
+        self.ship_mouse = arcade.Sprite(constants.BATTLESHIP_IMAGE,center_x=constants.SCREEN_WIDTH/2, center_y=constants.SCREEN_HEIGHT/2)
+        self.fire_mouse = arcade.Sprite(constants.FIRE_IMAGE, center_x=constants.SCREEN_WIDTH/2, center_y=constants.SCREEN_HEIGHT/2)
+
+        self.current_mouse = "ship"
+
+        self.current_mouse_sprite = self.ship_mouse
+    
         self.winner = None
         self.game_over = False
 
@@ -53,7 +57,7 @@ class Director(arcade.View):
         #Background sounds/music 
         arcade.play_sound(constants.BACKGROUND_MUSIC)
         
-        self.mouse = arcade.Sprite(constants.CLICKER_IMAGE, center_x=700,center_y=700,image_height=20,image_width=12)
+        #self.mouse = arcade.Sprite(constants.CLICKER_IMAGE, center_x=700,center_y=700,image_height=20,image_width=12)
         
         self.user_ships = arcade.SpriteList()
         self.computer_ships = []
@@ -88,8 +92,11 @@ class Director(arcade.View):
         arcade.draw_lrwh_rectangle_textured(0,0,constants.SCREEN_WIDTH,constants.SCREEN_HEIGHT,self.background_loaded)
 
     def on_mouse_motion(self,x,y,dx,dy):
-        self.mouse.center_x = x
-        self.mouse.center_y = y
+        """self.mouse.center_x = x
+        self.mouse.center_y = y"""
+
+        self.current_mouse_sprite.center_x = x
+        self.current_mouse_sprite.center_y = y
 
     def on_mouse_press(self,x,y,button,modifiers):
         if not self.game_over:
@@ -98,7 +105,7 @@ class Director(arcade.View):
                 if self.game_status.is_placing_user_ships(): #If the user is placing ships 
                     for spot in self.user_sprite_coordinates: #Looping through all sprites themselves
                         spot_index = self.user_sprite_coordinates.index(spot)
-                        if self.mouse.collides_with_sprite(spot): 
+                        if self.current_mouse_sprite.collides_with_sprite(spot): 
                             if spot_index not in self.user_ships: 
                                 self.place_user_ship(spot)
                                 self.user_board_coordinates[spot_index] = "s"
@@ -107,11 +114,11 @@ class Director(arcade.View):
                                 
                                 #Sound effect for placing ship on user side
                                 arcade.play_sound(constants.TEST_SOUND)
-
+                                
 
                 elif self.game_status.get_current_turn() == "user":
                     for spot in self.computer_sprite_coordinates:
-                        if self.mouse.collides_with_sprite(spot):
+                        if self.current_mouse_sprite.collides_with_sprite(spot):
                             shot_result = self.attacks.check_shot(self.computer_sprite_coordinates.index(spot),self.computer_board_coordinates)
                             if shot_result == "hit!":
                                 spot.color = arcade.color.GREEN
@@ -132,14 +139,16 @@ class Director(arcade.View):
                                 arcade.play_sound(constants.BULLET)
 
                             if shot_result == "already fired there!":
-                                print("You already fired there!") #Display to user that they've already fired there
                                 self.current_message = "You already fired there! Try again! "
-                            
+                        
                                 #Sound effect for if the user fires somewhere they've already fired - could take out later
                                 arcade.play_sound(constants.BUZZER)
 
-
     def on_update(self,delta_time):
+
+        if self.game_status.get_current_turn() == "user":
+            self.current_mouse_sprite = self.fire_mouse
+
         self.check_for_win()
         self.output_service.clear_screen()
         self.output_service.draw_all_sprites(self.all_sprites)
@@ -160,8 +169,6 @@ class Director(arcade.View):
                     self.game_status.add_placed_ship()
 
         if self.game_status.get_current_turn() == "computer":
-            print("Computer move")
-
             #Actual shot attempt
             attack_result, spot = self.attacks.computer_shot(self.user_board_coordinates)
             if attack_result == "hit!":
@@ -184,8 +191,11 @@ class Director(arcade.View):
 
                 #Sound effect for a computer miss
                 #arcade.play_sound(constants.SONG)
-
-        self.mouse.draw()
+        
+        self.current_mouse_sprite.draw()
+        
+        
+        #self.mouse.draw()
 
     def place_user_ship(self,sprite):
         sprite.color = arcade.color.BLUE
@@ -214,15 +224,10 @@ class Director(arcade.View):
 
             if self.game_over:
                 if self.winner == "user":
-                    print("You won! Congratulations captain!")
-                    
                     #Sound effect for a win
                     arcade.play_sound(constants.WAR_THEME)
 
-                    
                 else:
-                    print("You lost! The computer beat you!\n Better luck next time!")
-                    
                     #Sound effect for a loss
                     arcade.play_sound(constants.MISSILE_SIREN)
                 

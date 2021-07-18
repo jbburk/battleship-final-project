@@ -30,6 +30,7 @@ DIVIDOR_IMAGE =  os.path.join(file_path, "assets", "images", "rock-dividor.png")
 BACKGROUND_IMAGE = os.path.join(file_path, "assets", "images","water.gif") 
 TEST_PLACE_HOLDER = os.path.join(file_path, "assets", "images","placeholder90x20.png")
 BOMB_BACKGROUND = os.path.join(file_path, "assets", "images","bomb_background.png")
+FIRE_IMAGE = os.path.join(file_path,"assets","images","fire_image.png")
 
 #test mouse replacement for start screen and instructions
 CLICKER_IMAGE = os.path.join(file_path,"assets","images","clicker.png")

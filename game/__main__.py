@@ -6,7 +6,6 @@ import constants as constants
 from asciimatics.screen import Screen 
 import arcade
 
-
 def main():
         window = arcade.Window(constants.SCREEN_WIDTH,constants.SCREEN_HEIGHT,constants.SCREEN_TITLE)
         start_screen = StartScreen()
