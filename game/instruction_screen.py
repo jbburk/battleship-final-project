@@ -26,9 +26,6 @@ class InstructionScreen(arcade.View):
     
         self.mouse = arcade.Sprite(constants.CLICKER_IMAGE, center_x=700,center_y=700,image_height=20,image_width=12)
         
-        
-        
-
     def on_draw(self):
         arcade.start_render()
         #draw text for everything to be displayed
