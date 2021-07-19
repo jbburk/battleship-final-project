@@ -1,4 +1,4 @@
-# [PROGRAM NAME] 
+# Battleship 
 Here we have an awesome Battleship game! 
 A simple but fun game for all ages, here's how to play!
 Begin by placing your 5 ships on the left side of the screen
@@ -9,7 +9,7 @@ Good luck!
 
 ## Getting Started
 ---
-[how to install and run the program]
+Clone the repository and run from __main__.py.
 
 ## Project Structure
 ---
@@ -17,9 +17,8 @@ The project files and folders are organized as follows:
 ```
 root                    (project root folder)
 +-- docs                (project documentation)
-+-- rename              [src code files - rename for project]
++-- game                (src code files)
   +-- assets            (program asset files)
-  +-- data              (program data files)
   +-- __init__.py       (python package file)
   +-- __main__.py       (entry point for program)
 +-- LICENSE             (license file)
@@ -28,8 +27,11 @@ root                    (project root folder)
 
 ## Required Technologies
 ---
-[list required libraries]
+This game requires at least Python 3.8, and the Arcade library.
 
 ## Authors
 ---
-[list author names and emails]
+* Austin Howard: how19021@byui.edu
+* Caleb Lan: lan19005@byui.edu
+* Jacob Johnson: joh20043@byui.edu
+* Joshua Burk: jbburk@byui.edu
